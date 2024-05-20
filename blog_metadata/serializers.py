@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import BlogMetaData
 
 
-class BlogMetaData(serializers.ModelSerializer):
+class BlogMetaDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = BlogMetaData
         fields = [
@@ -12,5 +12,5 @@ class BlogMetaData(serializers.ModelSerializer):
             "tags",
             "route",
             "componentName",
-            "date"
+            "date",
         ]
