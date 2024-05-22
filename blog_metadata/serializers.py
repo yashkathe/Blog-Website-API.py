@@ -14,3 +14,12 @@ class BlogMetaDataSerializer(serializers.ModelSerializer):
             "componentName",
             "date",
         ]
+
+class RouteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlogMetaData
+        fields = [
+            "id",
+            "route",
+            "componentName"
+        ]

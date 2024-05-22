@@ -3,7 +3,7 @@ from rest_framework import status
 import math
 
 from .models import BlogMetaData
-from .serializers import BlogMetaDataSerializer
+from .serializers import BlogMetaDataSerializer, RouteSerializer
 
 # Global Variables
 
@@ -19,7 +19,7 @@ def test_api(request):
 # Get Blogs for Home Page
 
 
-def get_blog(request, current_page = 1):
+def get_blog(request, current_page=1):
 
     if request.method == "GET":
 
@@ -59,3 +59,23 @@ def get_blog(request, current_page = 1):
                 "status": status.HTTP_200_OK,
             }
         )
+
+
+def get_routes(request, current_page=1):
+
+    if request.method == "GET":
+        total_data = BlogMetaData.objects.count()
+        
+        # __CHECK IF PAGE IS VALID__
+        if math.ceil(total_data / per_page) < current_page:
+            return JsonResponse(
+                {"message": "Page out of bounds", "status": status.HTTP_400_BAD_REQUEST}
+            )
+
+        # __HANDLE DATA__
+        skip_data = (current_page * per_page) - per_page
+
+        blogs = BlogMetaData.objects.all()[skip_data : skip_data + per_page]
+        serializer = RouteSerializer(blogs, many=True)
+
+        return JsonResponse({"data": serializer.data, "status": status.HTTP_200_OK})
