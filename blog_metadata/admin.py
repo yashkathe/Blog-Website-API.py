@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import BlogMetaData
+from .models import Blog
 
 # Register your models here.
 
@@ -18,9 +18,9 @@ class BlogMetaDataAdmin(admin.ModelAdmin):
         "description",
         "tags",
         "route",
-        "componentName",
+        "content",
         "date",
     ]
 
 
-admin.site.register(BlogMetaData, BlogMetaDataAdmin)
+admin.site.register(Blog, BlogMetaDataAdmin)

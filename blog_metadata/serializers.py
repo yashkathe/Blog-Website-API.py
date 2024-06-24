@@ -1,25 +1,33 @@
 from rest_framework import serializers
-from .models import BlogMetaData
+from .models import Blog
 
 
 class BlogMetaDataSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BlogMetaData
+        model = Blog
         fields = [
             "id",
             "title",
             "description",
             "tags",
+            "content",
             "route",
-            "componentName",
             "date",
         ]
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BlogMetaData
+        model = Blog
         fields = [
             "id",
             "route",
-            "componentName"
+        ]
+
+class ContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Blog
+        fields = [
+            "id",
+            "title",
+            "content",
         ]
