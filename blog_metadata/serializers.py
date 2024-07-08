@@ -30,4 +30,5 @@ class ContentSerializer(serializers.ModelSerializer):
             "id",
             "title",
             "content",
+            "date"
         ]
