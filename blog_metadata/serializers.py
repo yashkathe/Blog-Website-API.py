@@ -11,16 +11,7 @@ class BlogMetaDataSerializer(serializers.ModelSerializer):
             "description",
             "tags",
             "content",
-            "route",
             "date",
-        ]
-
-class RouteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Blog
-        fields = [
-            "id",
-            "route",
         ]
 
 class ContentSerializer(serializers.ModelSerializer):
